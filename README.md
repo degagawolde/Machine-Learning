@@ -1,13 +1,5 @@
 # Kalman-Filter-In-C#
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace EthSignTranslator
-{
     public class kalmanf
     {
         private Matrix<double> transitionMatrix;
@@ -38,4 +30,4 @@ namespace EthSignTranslator
             errorCovariancePost = (IdentityMatrix - (K.Multiply(measurementMatrix)).Multiply(errorCovariancePost));
         }
     }
-}
+
