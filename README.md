@@ -1,4 +1,5 @@
 # Kalman-Filter-In-C#
+
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using System;
@@ -10,8 +11,6 @@ namespace EthSignTranslator
 {
     public class kalmanf
     {
-
-
         private Matrix<double> transitionMatrix;
         private Matrix<double> measurementMatrix;
         private Matrix<double> processNoise;
@@ -29,7 +28,6 @@ namespace EthSignTranslator
 
         public void kalmanFilter(Matrix<double> measurement, ref Matrix<double> state, ref Matrix<double> errorCovariancePost)
         {
-
             //predict
             state = transitionMatrix.Multiply(state);
             errorCovariancePost = transitionMatrix.Multiply(errorCovariancePost).Multiply(transitionMatrix.Transpose()) + processNoise;
@@ -39,8 +37,7 @@ namespace EthSignTranslator
             Matrix<double> K = (errorCovariancePost.Multiply(measurementMatrix.Transpose())).Multiply(S.Inverse());
             state = state + K.Multiply(measurement - measurementMatrix.Multiply(state));
             errorCovariancePost = (IdentityMatrix - (K.Multiply(measurementMatrix)).Multiply(errorCovariancePost));
-
         }
-
     }
 }
+
