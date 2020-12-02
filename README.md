@@ -10,8 +10,6 @@ namespace EthSignTranslator
 {
     public class kalmanf
     {
-
-
         private Matrix<double> transitionMatrix;
         private Matrix<double> measurementMatrix;
         private Matrix<double> processNoise;
@@ -26,7 +24,6 @@ namespace EthSignTranslator
             measurementNoise = Matrix.Build.Diagonal(2, 2, 1.0e-1);
             IdentityMatrix = Matrix.Build.DenseIdentity(2);
         }
-
         public void kalmanFilter(Matrix<double> measurement, ref Matrix<double> state, ref Matrix<double> errorCovariancePost)
         {
 
@@ -39,8 +36,6 @@ namespace EthSignTranslator
             Matrix<double> K = (errorCovariancePost.Multiply(measurementMatrix.Transpose())).Multiply(S.Inverse());
             state = state + K.Multiply(measurement - measurementMatrix.Multiply(state));
             errorCovariancePost = (IdentityMatrix - (K.Multiply(measurementMatrix)).Multiply(errorCovariancePost));
-
         }
-
     }
 }
